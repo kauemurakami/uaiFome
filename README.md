@@ -4,6 +4,7 @@ projeto final para avaliação semestral.
 # Firebase dependencias
 # a nível de aplicação
 dependencies { ...
+
     implementation 'com.google.firebase:firebase-core:15.0.0'
     
     implementation 'com.google.firebase:firebase-storage:15.0.0'
