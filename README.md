@@ -1,5 +1,8 @@
 # uaiFome
 projeto final para avaliação semestral.
+# Material Search View
+
+    	implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
 # Firebase dependencias
 # a nível de aplicação
