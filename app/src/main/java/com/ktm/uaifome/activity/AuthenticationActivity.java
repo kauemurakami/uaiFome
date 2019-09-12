@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -21,13 +23,14 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.ktm.uaifome.R;
 import com.ktm.uaifome.helper.ConfiguracaoFirebase;
+import com.ktm.uaifome.helper.UsuarioFirebase;
 
 public class AuthenticationActivity extends AppCompatActivity {
 
     private Button botaoAcessar;
     private EditText campoEmail, campoSenha;
-    private Switch tipoAcesso;
-
+    private Switch tipoAcesso, tipoUsuario;
+    private LinearLayout linearTipoUsuario;
     private FirebaseAuth autenticacao;
 
     @Override
@@ -39,6 +42,18 @@ public class AuthenticationActivity extends AppCompatActivity {
         inicializarComponentes();
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         verificarUsuarioLogado();
+
+        //verificando se o switch esta ativado
+        tipoAcesso.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){  //empresa
+                    linearTipoUsuario.setVisibility(View.VISIBLE);
+                }else{ //usuario
+                    linearTipoUsuario.setVisibility(View.GONE);
+                }
+            }
+        });
 
         botaoAcessar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +72,9 @@ public class AuthenticationActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso", Toast.LENGTH_LONG).show();
-                                        abrirTelaprincipal();
+                                        String tipoUsuario = getTipoUsuario(); // recuperando tipo do usuário
+                                        UsuarioFirebase.atualizarTipoUsuario(tipoUsuario);
+                                        abrirTelaprincipal(tipoUsuario);
                                     }else{
 
                                         String erroExcecao = "";
@@ -79,7 +96,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                        }else{ // login
+                        }else{ // login # #
 
                             autenticacao.signInWithEmailAndPassword(
                                     email, senha
@@ -88,7 +105,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Bem vindo :)", Toast.LENGTH_LONG).show();
-                                        abrirTelaprincipal();
+                                        abrirTelaprincipal(task.getResult().getUser().getDisplayName()); // recuperando tipo de usuario da task.
                                     }else{
                                         Toast.makeText(getApplicationContext(), "Erro ao fazer login", Toast.LENGTH_LONG).show();
                                     }
@@ -105,21 +122,33 @@ public class AuthenticationActivity extends AppCompatActivity {
         });
     }
 
-    public void abrirTelaprincipal(){
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+    public void abrirTelaprincipal(String tipoUsuario){
+        if (tipoUsuario.equals("E")){ // empresa
+            startActivity(new Intent(getApplicationContext(), EmpresaActivity.class));
+        }else { // usuario
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        }
     }
 
     private void verificarUsuarioLogado(){
         FirebaseUser usuarioAtual = autenticacao.getCurrentUser();
         if (usuarioAtual != null){
-            abrirTelaprincipal();
+            String tipoUsuario = usuarioAtual.getDisplayName();
+            abrirTelaprincipal(tipoUsuario);
         }
     }
 
+    //retorna tipo do usuario
+    private String getTipoUsuario(){
+        return tipoUsuario.isChecked() ? "E" : "U";
+    }
+
     public void inicializarComponentes(){
-        campoEmail   = findViewById(R.id.edtCadastroEmail);
-        campoSenha   = findViewById(R.id.edtCadastroSenha);
-        botaoAcessar = findViewById(R.id.btnAcesso);
-        tipoAcesso   = findViewById(R.id.switchAcesso);
+        campoEmail        = findViewById(R.id.edtCadastroEmail);
+        campoSenha        = findViewById(R.id.edtCadastroSenha);
+        botaoAcessar      = findViewById(R.id.btnAcesso);
+        tipoAcesso        = findViewById(R.id.switchAcesso);
+        tipoUsuario       = findViewById(R.id.switchTipoUsuario);
+        linearTipoUsuario = findViewById(R.id.linearTipoUsuario);
     }
 }
