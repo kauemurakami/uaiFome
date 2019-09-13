@@ -17,12 +17,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ktm.uaifome.R;
 import com.ktm.uaifome.helper.ConfiguracaoFirebase;
 import com.ktm.uaifome.helper.UsuarioFirebase;
 import com.ktm.uaifome.model.Empresa;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
@@ -32,6 +37,7 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
     private ImageView imagemPerfilEmpresa;
 
     private static final int SELECAO_GALERIA = 200;
+    private DatabaseReference databaseReference;
     private StorageReference storageReference;
     private String idUsuarioLogado;
     private String urlImagemSelecionada;
@@ -44,6 +50,7 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
         //configurações iniciais
         inicializarComponentes();
         storageReference = ConfiguracaoFirebase.getFirebaseStorage();
+        databaseReference = ConfiguracaoFirebase.getFirebase();
         idUsuarioLogado = UsuarioFirebase.getIdUsuario();
 
         //config toolbar
@@ -65,6 +72,39 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
                 }
             }
         });
+        recuperarDadosEmpresa();
+
+    }
+
+    private void recuperarDadosEmpresa(){
+        DatabaseReference empresaRef = databaseReference
+                .child("empresas")
+                .child(idUsuarioLogado);
+        empresaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null){
+                    Empresa empresa = dataSnapshot.getValue(Empresa.class);
+                    edtNomeEmpresa.setText(empresa.getNome());
+                    edtEmpresaCategoria.setText(empresa.getCategoria());
+                    edtEmpresaTaxa.setText(empresa.getPrecoEntrega().toString());
+                    edtEmpresaTempo.setText(empresa.getTempo());
+
+                    urlImagemSelecionada = empresa.getUrlDaImagem();
+                    if (!urlImagemSelecionada.isEmpty()){
+                        Picasso.get()
+                                .load(urlImagemSelecionada)
+                                .into(imagemPerfilEmpresa);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
