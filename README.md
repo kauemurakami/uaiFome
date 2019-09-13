@@ -1,18 +1,24 @@
 # uaiFome
 projeto final para avaliação semestral.
-#Circle ImageView
+# Dependências
+
+### Picasso
+        implementation 'com.squareup.picasso:picasso:2.71828'
+        https://square.github.io/picasso/
+        
+### Circle ImageView
 
         implementation 'de.hdodenhof:circleimageview:3.0.1'
         https://github.com/hdodenhof/CircleImageView
-# Material Search View
+### Material Search View
 
     	implementation 'com.miguelcatalan:materialsearchview:1.4.0'
         https://github.com/MiguelCatalan/MaterialSearchView
         
-# Firebase dependencias
+## Firebase dependencias
 
-        https://firebase.google.com/docs/?authuser=0
-# a nível de aplicação
+        https://firebase.google.com/docs/
+### a nível de aplicação
 dependencies { ...
 
     implementation 'com.google.firebase:firebase-core:15.0.0'
@@ -24,7 +30,7 @@ dependencies { ...
     implementation 'com.google.firebase:firebase-database:15.0.0'
     }
   apply plugin: 'com.google.gms.google-services'
-# a nível de projeto
+### a nível de projeto
     dependencies {
         ...
         classpath 'com.google.gms:google-services:4.2.0' 
