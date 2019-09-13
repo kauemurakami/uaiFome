@@ -31,6 +31,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:15.0.0'
     implementation 'com.google.firebase:firebase-database:15.0.0'
 
+    //circleimageview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
     //material search view
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
