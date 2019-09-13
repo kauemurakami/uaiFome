@@ -1,10 +1,17 @@
 # uaiFome
 projeto final para avaliação semestral.
+#Circle ImageView
+
+        implementation 'de.hdodenhof:circleimageview:3.0.1'
+        https://github.com/hdodenhof/CircleImageView
 # Material Search View
 
     	implementation 'com.miguelcatalan:materialsearchview:1.4.0'
-
+        https://github.com/MiguelCatalan/MaterialSearchView
+        
 # Firebase dependencias
+
+        https://firebase.google.com/docs/?authuser=0
 # a nível de aplicação
 dependencies { ...
 
