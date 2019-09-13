@@ -7,16 +7,16 @@ import android.os.Bundle;
 
 import com.ktm.uaifome.R;
 
-public class NovoProdutoEmpresaActivity extends AppCompatActivity {
+public class ConfiguracoesUsuarioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_novo_produto_empresa);
+        setContentView(R.layout.activity_configuracoes_usuario);
 
         //config toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Novo Produto");
+        toolbar.setTitle("Configurações u");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
