@@ -12,4 +12,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/edtNomeProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:hint="Nome Produto"
+            android:inputType="text"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/edtDescricaoProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:hint="tomate, baco, molho ..."
+            android:inputType="text"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/edtPrecoProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:hint="Preço"
+            android:inputType="numberDecimal"
+            android:padding="15dp" />
+
+        <Button
+            android:padding="10dp"
+            android:id="@+id/salvarEmpresa2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="validarDadosProduto"
+            android:text="Salvar"
+            android:theme="@style/botaoPadrao"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>
