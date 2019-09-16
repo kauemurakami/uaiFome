@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +34,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private Switch tipoAcesso, tipoUsuario;
     private LinearLayout linearTipoUsuario;
     private FirebaseAuth autenticacao;
+    private TextView cadastrar, entrar, usuarioT, empresa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +44,42 @@ public class AuthenticationActivity extends AppCompatActivity {
         inicializarComponentes();
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         verificarUsuarioLogado();
+        entrar.setTypeface(null, Typeface.BOLD);
+        usuarioT.setTypeface(null, Typeface.BOLD);
+
 
         //verificando se o switch esta ativado
         tipoAcesso.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){  //empresa
+                if(b){  //cadastrar
                     linearTipoUsuario.setVisibility(View.VISIBLE);
-                }else{ //usuario
+                    botaoAcessar.setText("Cadastrar");
+                    cadastrar.setTypeface(null, Typeface.BOLD);
+                    entrar.setTypeface(null, Typeface.NORMAL);
+
+                    tipoUsuario.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                            if (b){
+                                usuarioT.setTypeface(null, Typeface.NORMAL);
+                                empresa.setTypeface(null, Typeface.BOLD);
+                            }else{
+                                empresa.setTypeface(null, Typeface.NORMAL);
+                                usuarioT.setTypeface(null, Typeface.BOLD);
+                            }
+                        }
+                    });
+
+                }else{ //logar
                     linearTipoUsuario.setVisibility(View.GONE);
+                    botaoAcessar.setText("Acessar");
+                    entrar.setTypeface(null, Typeface.BOLD);
+                    cadastrar.setTypeface(null, Typeface.NORMAL);
                 }
             }
         });
+
 
         botaoAcessar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,5 +176,10 @@ public class AuthenticationActivity extends AppCompatActivity {
         tipoAcesso        = findViewById(R.id.switchAcesso);
         tipoUsuario       = findViewById(R.id.switchTipoUsuario);
         linearTipoUsuario = findViewById(R.id.linearTipoUsuario);
+
+        usuarioT          =findViewById(R.id.txtUsuario);
+        cadastrar         = findViewById(R.id.txtcadastrar);
+        empresa           = findViewById(R.id.txtEmpresa);
+        entrar            = findViewById(R.id.txtLogar);
     }
 }
