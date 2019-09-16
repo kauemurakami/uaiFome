@@ -192,11 +192,13 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
                 empresa.setTempo(tempo);
                 empresa.setUrlDaImagem(urlImagemSelecionada);
                 try {
-                    empresa.salvar();
-                    exibirMensagem("Salvo");
-                    finish();
+                    if (!urlImagemSelecionada.isEmpty()){
+                        empresa.salvar();
+                        exibirMensagem("Salvo");
+                        finish();
+                    }
                 }catch (Exception e){
-                    exibirMensagem("Falha ao salvar");
+                    exibirMensagem("adicione uma imagem ao seu negócio");
                 }
             }else{
                 exibirMensagem("Descreva a categoria de sua empresa");

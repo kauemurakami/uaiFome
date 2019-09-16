@@ -5,11 +5,20 @@ import com.ktm.uaifome.helper.ConfiguracaoFirebase;
 
 public class Empresa {
 
-    private String idUsuario, urlDaImagem, tempo, categoria, nome;
+    private String idUsuario;
+    private String urlDaImagem;
+    private String tempo;
+    private String categoria;
+    private String nome;
+    private String nomePesquisa;
     private Double  precoEntrega;
 
     public Empresa() {
 
+    }
+
+    public String getNomePesquisa() {
+        return nomePesquisa;
     }
 
     public String getIdUsuario() {
@@ -50,6 +59,7 @@ public class Empresa {
 
     public void setNome(String nome) {
         this.nome = nome;
+        this.nomePesquisa = nome.toLowerCase();
     }
 
     public Double getPrecoEntrega() {

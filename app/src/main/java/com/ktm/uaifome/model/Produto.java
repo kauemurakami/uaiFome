@@ -25,8 +25,8 @@ public class Produto {
         DatabaseReference databaseRef = ConfiguracaoFirebase.getFirebase();
         DatabaseReference produtoRef = databaseRef
                 .child("produtos")
-                .child(getIdUsuario())
-                .child(getIdProduto());
+                .child(getIdUsuario() )
+                .child(getIdProduto() );
         produtoRef.removeValue();
     }
 
