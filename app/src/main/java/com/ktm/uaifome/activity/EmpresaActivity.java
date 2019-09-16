@@ -90,7 +90,7 @@ public class EmpresaActivity extends AppCompatActivity {
         );
     }
 
-    public void recuperarProdutos(){
+    private void recuperarProdutos(){
         DatabaseReference produtosRef = databaseReference
                 .child("produtos")
                 .child(idUsuarioLogado);
