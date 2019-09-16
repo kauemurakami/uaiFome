@@ -6,8 +6,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ConfiguracoesUsuarioActivity">
+
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtNomeUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="text"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/edtEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/bg_edit_text"
+            android:ems="10"
+            android:hint="Rua josé da cunha 872  centro"
+            android:inputType="text"
+            android:padding="15dp" />
+
+        <Button
+            android:padding="10dp"
+            android:id="@+id/salvarEmpresa2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="validarDadosUsuario"
+            android:text="Salvar"
+            android:theme="@style/botaoPadrao"/>
+
+    </LinearLayout>
+
 </LinearLayout>
