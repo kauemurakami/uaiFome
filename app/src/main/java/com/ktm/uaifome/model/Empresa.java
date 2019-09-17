@@ -3,13 +3,24 @@ package com.ktm.uaifome.model;
 import com.google.firebase.database.DatabaseReference;
 import com.ktm.uaifome.helper.ConfiguracaoFirebase;
 
-public class Empresa {
+import java.io.Serializable;
 
-    private String idUsuario, urlDaImagem, tempo, categoria, nome;
+public class Empresa implements Serializable {
+
+    private String idUsuario;
+    private String urlDaImagem;
+    private String tempo;
+    private String categoria;
+    private String nome;
+    private String nomePesquisa;
     private Double  precoEntrega;
 
     public Empresa() {
 
+    }
+
+    public String getNomePesquisa() {
+        return nomePesquisa;
     }
 
     public String getIdUsuario() {
@@ -50,6 +61,7 @@ public class Empresa {
 
     public void setNome(String nome) {
         this.nome = nome;
+        this.nomePesquisa = nome.toLowerCase();
     }
 
     public Double getPrecoEntrega() {

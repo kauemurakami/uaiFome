@@ -31,7 +31,7 @@
         android:id="@+id/edtCadastroSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/bg_edit_text"
         android:ems="10"
         android:hint="Senha"
@@ -51,7 +51,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="Logar"
+            android:text="Entrar"
             android:textColor="@android:color/white" />
 
         <Switch
@@ -64,7 +64,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Cadastre-se"
+            android:text="Cadastrar"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

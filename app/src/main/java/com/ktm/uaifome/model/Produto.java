@@ -5,7 +5,11 @@ import com.ktm.uaifome.helper.ConfiguracaoFirebase;
 
 public class Produto {
 
-    private String idUsuario, nome, descricao;
+    private String idUsuario;
+    private String idProduto;
+    private String nome;
+
+    private String descricao;
     private Double preco;
 
     public void salvar(){
@@ -13,14 +17,33 @@ public class Produto {
         DatabaseReference produtoRef = databaseRef
             .child("produtos")
             .child(getIdUsuario())
-            .push();
+            .child(getIdProduto());
         produtoRef.setValue(this);
     }
 
-    public Produto() {
-
+    public void remover(){
+        DatabaseReference databaseRef = ConfiguracaoFirebase.getFirebase();
+        DatabaseReference produtoRef = databaseRef
+                .child("produtos")
+                .child(getIdUsuario() )
+                .child(getIdProduto() );
+        produtoRef.removeValue();
     }
 
+    public Produto() {
+        DatabaseReference databaseRef = ConfiguracaoFirebase.getFirebase();
+        DatabaseReference produtoRef = databaseRef
+                .child("produtos");
+        setIdProduto(produtoRef.push().getKey());
+    }
+
+    public String getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(String idProduto) {
+        this.idProduto = idProduto;
+    }
     public String getIdUsuario() {
         return idUsuario;
     }
