@@ -177,7 +177,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         tipoUsuario       = findViewById(R.id.switchTipoUsuario);
         linearTipoUsuario = findViewById(R.id.linearTipoUsuario);
 
-        usuarioT          = findViewById(R.id.txtUsuario);
+        usuarioT          =findViewById(R.id.txtUsuario);
         cadastrar         = findViewById(R.id.txtcadastrar);
         empresa           = findViewById(R.id.txtEmpresa);
         entrar            = findViewById(R.id.txtLogar);
