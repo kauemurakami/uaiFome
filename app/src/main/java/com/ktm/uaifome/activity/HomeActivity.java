@@ -22,7 +22,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ktm.uaifome.R;
 import com.ktm.uaifome.adapter.AdapterEmpresa;
-import com.ktm.uaifome.adapter.AdapterProduto;
 import com.ktm.uaifome.helper.ConfiguracaoFirebase;
 import com.ktm.uaifome.listener.RecyclerItemClickListener;
 import com.ktm.uaifome.model.Empresa;
