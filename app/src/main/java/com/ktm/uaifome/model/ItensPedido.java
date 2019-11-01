@@ -4,6 +4,7 @@ public class ItensPedido {
 
     private String idProduto, nomeProduto;
     private int quantidade;
+    private Double preco;
 
     public String getIdProduto() {
         return idProduto;
@@ -37,6 +38,5 @@ public class ItensPedido {
         this.preco = preco;
     }
 
-    private Double preco;
 
 }

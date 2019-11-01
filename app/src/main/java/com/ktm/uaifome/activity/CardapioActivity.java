@@ -30,10 +30,12 @@ import com.ktm.uaifome.helper.UsuarioFirebase;
 import com.ktm.uaifome.listener.RecyclerItemClickListener;
 import com.ktm.uaifome.model.Empresa;
 import com.ktm.uaifome.model.ItensPedido;
+import com.ktm.uaifome.model.Pedido;
 import com.ktm.uaifome.model.Produto;
 import com.ktm.uaifome.model.Usuario;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,10 @@ public class CardapioActivity extends AppCompatActivity {
     private AdapterProduto adapterProduto;
     private String idEmpresa, idUSuarioLogado;
     private Usuario usuario;
+    private Pedido pedidoRecuperado;
+    private int qtdItemCarrinho;
+    private Double totalCarrinho;
+    private TextView txtQuantidade, txtValor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,13 +129,40 @@ public class CardapioActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Quantidade");
         builder.setMessage("Digite a quantidade");
+
+
         final EditText edtQtd = new EditText(this);
         edtQtd.setText("1");
         edtQtd.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+
         builder.setView(edtQtd);
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                String quantidade = edtQtd.getText().toString();
+
+                Produto produtoSelecionado = produtos.get(position);
+                ItensPedido itemPedido = new ItensPedido();
+                itemPedido.setIdProduto(produtoSelecionado.getIdProduto());
+                itemPedido.setNomeProduto(produtoSelecionado.getNome());
+                itemPedido.setPreco(produtoSelecionado.getPreco());
+                itemPedido.setQuantidade(Integer.parseInt(quantidade));
+
+                itensPedido.add(itemPedido);
+                //###########Verificar se o item ja existe no carrinho
+                //com laço no nosso array de itens do carrinho
+
+                //verifica se pedido já existe
+                if (pedidoRecuperado == null){
+                    pedidoRecuperado = new Pedido(idUSuarioLogado, idEmpresa);
+                }
+
+                pedidoRecuperado.setNome(usuario.getNome());
+                pedidoRecuperado.setEndereco(usuario.getEndereco());
+                pedidoRecuperado.setItens(itensPedido);
+                pedidoRecuperado.salvar();
 
             }
         });
@@ -148,9 +181,8 @@ public class CardapioActivity extends AppCompatActivity {
                 itemPedido.setQuantidade(Integer.parseInt(quantidade));
 
                 /// ################# validar se o carrinho ja nao esta no carrinho
-                //com laço no nosso array de itens do carrinho
-                itensPedido.add(itemPedido);
 
+                itensPedido.add(itemPedido);
 
 
             }
@@ -190,7 +222,43 @@ public class CardapioActivity extends AppCompatActivity {
 
     private void recuperarPedido(){
 
-        dialog.dismiss();
+        DatabaseReference pedidoRef = firebaseRef
+                .child("pedidos_usuario")
+                .child(idEmpresa)
+                .child(idUSuarioLogado);
+        pedidoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null){
+                    pedidoRecuperado = dataSnapshot.getValue(Pedido.class);
+                    itensPedido = pedidoRecuperado.getItens();
+
+                    qtdItemCarrinho = 0;
+                    totalCarrinho = 0.0;
+                    itensPedido = new ArrayList<>();
+
+                    for (ItensPedido item : itensPedido){
+                        int qtde = item.getQuantidade();
+                        Double preco = item.getPreco();
+
+                        totalCarrinho += (qtde * preco);
+                        qtdItemCarrinho += qtde;
+
+                    }
+                }
+
+                DecimalFormat df = new DecimalFormat("0.00");
+                txtQuantidade.setText("qtd " + String.valueOf(qtdItemCarrinho));
+                txtValor.setText("R$ " + df.format(totalCarrinho));
+                dialog.dismiss();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void recuperarProdutos(){
@@ -239,5 +307,7 @@ public class CardapioActivity extends AppCompatActivity {
         this.recyclerProcutoCardapio = findViewById(R.id.recyclerProdutoCardapio);
         this.imageEmpresaCardapio    = findViewById(R.id.imageEmpresaCardapio);
         this.nomeEmpresaCardapio     = findViewById(R.id.textNomeEmpresaCardapio);
+        this.txtQuantidade           = findViewById(R.id.txtCarrinhoQuantidade);
+        this.txtValor                = findViewById(R.id.txtCarrinhoValor);
     }
 }
