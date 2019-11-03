@@ -55,7 +55,7 @@ public class CardapioActivity extends AppCompatActivity {
     private String idEmpresa, idUSuarioLogado;
     private Usuario usuario;
     private Pedido pedidoRecuperado;
-    private int qtdItemCarrinho;
+    private int qtdItemCarrinho, metodoPagamento;
     private Double totalCarrinho;
     private TextView txtQuantidade, txtValor;
 
@@ -297,10 +297,50 @@ public class CardapioActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menuConfirmarPedido :
-
+                confirmarPedido();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void confirmarPedido(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        builder.setTitle("Método de pagamento");
+
+        CharSequence[] items = new CharSequence[]{
+                "Dinheiro","Cartão"
+        };
+        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                metodoPagamento = i;
+            }
+        });
+
+        final EditText edtObservacao = new EditText(getApplicationContext());
+        edtObservacao.setHint("Obs : ex sem batata, troco pra R$50 ");
+        builder.setView(edtObservacao);
+
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String obs = edtObservacao.getText().toString();
+                pedidoRecuperado.setMetodoPagamento(metodoPagamento);
+                pedidoRecuperado.setObservacao(obs);
+                pedidoRecuperado.setStats("confirmado");
+                pedidoRecuperado.confirmar();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void inicializarComponentes(){
