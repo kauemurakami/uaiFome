@@ -329,6 +329,9 @@ public class CardapioActivity extends AppCompatActivity {
                 pedidoRecuperado.setObservacao(obs);
                 pedidoRecuperado.setStats("confirmado");
                 pedidoRecuperado.confirmar();
+                //remove pedido temporario
+                pedidoRecuperado.remover();
+                pedidoRecuperado = null;
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
