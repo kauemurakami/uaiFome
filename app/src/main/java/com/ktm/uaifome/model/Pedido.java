@@ -11,11 +11,31 @@ public class Pedido {
     private String stats = "pendente";
     private List<ItensPedido> itens;
     private int metodoPagamento;
+    private int quantidade;
     private Double total;
 
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public Pedido() {
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
     public Pedido(String idUsuario, String idEmpresa) {
-        this.idUsuario = idUsuario;
-        this.idEmpresa = idEmpresa;
+        setIdUsuario(idUsuario);
+        setIdEmpresa(idEmpresa);
 
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
         DatabaseReference pedidoRef = firebaseRef
@@ -96,15 +116,6 @@ public class Pedido {
     public void setMetodoPagamento(int metodoPagamento) {
         this.metodoPagamento = metodoPagamento;
     }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
 
     public void salvar(){
 

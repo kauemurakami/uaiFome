@@ -89,7 +89,6 @@ public class CardapioActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //configurando recycler view
         //configurando recylerView
         this.recyclerProcutoCardapio.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.recyclerProcutoCardapio.setHasFixedSize(true);
@@ -97,26 +96,27 @@ public class CardapioActivity extends AppCompatActivity {
         this.recyclerProcutoCardapio.setAdapter(adapterProduto);
 
         //Configurando evento de clique
-        recyclerProcutoCardapio.addOnItemTouchListener(new RecyclerItemClickListener(
-                this,
-                recyclerProcutoCardapio,
-                new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        confirmarQuantidade(position);
-                    }
+        recyclerProcutoCardapio.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        this,
+                        recyclerProcutoCardapio,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                confirmarQuantidade(position);
+                            }
 
-                    @Override
-                    public void onLongItemClick(View view, int position) {
+                            @Override
+                            public void onLongItemClick(View view, int position) {
 
-                    }
+                            }
 
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    }
-                }
-        ));
+                            }
+                        }
+                ));
 
         //recuperando produtos
         recuperarProdutos();
@@ -137,6 +137,7 @@ public class CardapioActivity extends AppCompatActivity {
 
 
         builder.setView(edtQtd);
+
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -183,8 +184,6 @@ public class CardapioActivity extends AppCompatActivity {
                 /// ################# validar se o carrinho ja nao esta no carrinho
 
                 itensPedido.add(itemPedido);
-
-
             }
         });
 
@@ -243,7 +242,6 @@ public class CardapioActivity extends AppCompatActivity {
 
                         totalCarrinho += (qtde * preco);
                         qtdItemCarrinho += qtde;
-
                     }
                 }
 
@@ -334,6 +332,7 @@ public class CardapioActivity extends AppCompatActivity {
                 pedidoRecuperado = null;
             }
         });
+
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
