@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -159,11 +161,15 @@ public class CardapioActivity extends AppCompatActivity {
                 if (pedidoRecuperado == null){
                     pedidoRecuperado = new Pedido(idUSuarioLogado, idEmpresa);
                 }
-
-                pedidoRecuperado.setNome(usuario.getNome());
-                pedidoRecuperado.setEndereco(usuario.getEndereco());
-                pedidoRecuperado.setItens(itensPedido);
-                pedidoRecuperado.salvar();
+                try {
+                    pedidoRecuperado.setNome(usuario.getNome());
+                    pedidoRecuperado.setEndereco(usuario.getEndereco());
+                    pedidoRecuperado.setItens(itensPedido);
+                    pedidoRecuperado.salvar();
+                }catch (Exception e){
+                    startActivity(new Intent(getApplicationContext(), ConfiguracoesUsuarioActivity.class));
+                    Toast.makeText(getApplicationContext(), "Insira as informações do usuário nas configurações", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -245,9 +251,8 @@ public class CardapioActivity extends AppCompatActivity {
                     }
                 }
 
-                DecimalFormat df = new DecimalFormat("0.00");
                 txtQuantidade.setText("qtd " + String.valueOf(qtdItemCarrinho));
-                txtValor.setText("R$ " + df.format(totalCarrinho));
+                txtValor.setText("R$ " + totalCarrinho);
                 dialog.dismiss();
 
             }

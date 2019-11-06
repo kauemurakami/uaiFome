@@ -21,6 +21,7 @@ public class ConfiguracoesUsuarioActivity extends AppCompatActivity {
 
     private EditText edtNomeUsuario, edtEnderecoUsuario;
     private String idUsuario;
+    private Usuario usuario;
     private DatabaseReference firebaseRef;
 
     @Override
@@ -51,9 +52,14 @@ public class ConfiguracoesUsuarioActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null){
-                    Usuario usuario = dataSnapshot.getValue(Usuario.class);
-                    edtNomeUsuario.setText(usuario.getNome());
-                    edtEnderecoUsuario.setText(usuario.getEndereco());
+                    try {
+
+                        usuario = dataSnapshot.getValue(Usuario.class);
+                        edtNomeUsuario.setText(usuario.getNome());
+                        edtEnderecoUsuario.setText(usuario.getEndereco());
+                    }catch (Exception e){
+
+                    }
                 }
             }
 
@@ -62,25 +68,25 @@ public class ConfiguracoesUsuarioActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     //validando dadaos
     public void validarDadosUsuario(View view){
-        String nome     = edtNomeUsuario.getText().toString();
-        String endereco = edtEnderecoUsuario.getText().toString();
-        if (!nome.isEmpty()){
-            if (!endereco.isEmpty()){
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(idUsuario);
-                usuario.setNome(nome);
-                usuario.setEndereco(endereco);
-                usuario.salvar();
 
-                exibirMensagem("Dados atualizados");
-                finish();
-            }else exibirMensagem("insira seu endereço primário");
-        }else exibirMensagem("Insira seu nome");
+            String nome     = edtNomeUsuario.getText().toString();
+            String endereco = edtEnderecoUsuario.getText().toString();
+            if (!nome.isEmpty()){
+                if (!endereco.isEmpty()){
+                    Usuario usuario = new Usuario();
+                    usuario.setIdUsuario(idUsuario);
+                    usuario.setNome(nome);
+                    usuario.setEndereco(endereco);
+                    usuario.salvar();
+
+                    exibirMensagem("Dados atualizados");
+                    finish();
+                }else exibirMensagem("insira seu endereço primário");
+            }else exibirMensagem("Insira seu nome");
 
 
     }
