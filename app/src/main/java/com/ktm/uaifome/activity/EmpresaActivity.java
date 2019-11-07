@@ -25,6 +25,7 @@ import com.ktm.uaifome.adapter.AdapterProduto;
 import com.ktm.uaifome.helper.ConfiguracaoFirebase;
 import com.ktm.uaifome.helper.UsuarioFirebase;
 import com.ktm.uaifome.listener.RecyclerItemClickListener;
+import com.ktm.uaifome.model.Pedido;
 import com.ktm.uaifome.model.Produto;
 
 import java.util.ArrayList;
@@ -134,6 +135,9 @@ public class EmpresaActivity extends AppCompatActivity {
             case R.id.menuNovoProduto :
                 abrirNovoProduto();
                 break;
+            case R.id.pedidosEmpresa :
+                abrirPedidos();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -146,6 +150,10 @@ public class EmpresaActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void abrirPedidos(){
+        startActivity(new Intent(getApplicationContext(), PedidosActivity.class));
     }
 
     private void abrirConfiguracoes(){

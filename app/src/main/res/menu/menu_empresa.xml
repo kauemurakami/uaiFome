@@ -9,6 +9,12 @@
         android:title="Novo Produto" />
 
     <item
+        android:id="@+id/pedidosEmpresa"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="Novo Produto" />
+
+    <item
         android:id="@+id/menuConfigurações"
         android:icon="@drawable/ic_add_24dp"
         app:showAsAction="never"
