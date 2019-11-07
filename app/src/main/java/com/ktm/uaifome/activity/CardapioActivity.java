@@ -47,7 +47,7 @@ public class CardapioActivity extends AppCompatActivity {
 
     private RecyclerView recyclerProcutoCardapio;
     private ImageView imageEmpresaCardapio;
-    private TextView nomeEmpresaCardapio;
+    private TextView nomeEmpresaCardapio, txtQuantidade, txtValor;
     private Empresa empresaSelecionada;
     private AlertDialog dialog;
     private List<Produto> produtos = new ArrayList<>();
@@ -59,7 +59,6 @@ public class CardapioActivity extends AppCompatActivity {
     private Pedido pedidoRecuperado;
     private int qtdItemCarrinho, metodoPagamento;
     private Double totalCarrinho;
-    private TextView txtQuantidade, txtValor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,11 +131,9 @@ public class CardapioActivity extends AppCompatActivity {
         builder.setTitle("Quantidade");
         builder.setMessage("Digite a quantidade");
 
-
         final EditText edtQtd = new EditText(this);
         edtQtd.setText("1");
         edtQtd.setInputType(InputType.TYPE_CLASS_NUMBER);
-
 
         builder.setView(edtQtd);
 
@@ -147,6 +144,7 @@ public class CardapioActivity extends AppCompatActivity {
                 String quantidade = edtQtd.getText().toString();
 
                 Produto produtoSelecionado = produtos.get(position);
+
                 ItensPedido itemPedido = new ItensPedido();
                 itemPedido.setIdProduto(produtoSelecionado.getIdProduto());
                 itemPedido.setNomeProduto(produtoSelecionado.getNome());
@@ -161,6 +159,7 @@ public class CardapioActivity extends AppCompatActivity {
                 if (pedidoRecuperado == null){
                     pedidoRecuperado = new Pedido(idUSuarioLogado, idEmpresa);
                 }
+
                 try {
                     pedidoRecuperado.setNome(usuario.getNome());
                     pedidoRecuperado.setEndereco(usuario.getEndereco());
@@ -234,12 +233,13 @@ public class CardapioActivity extends AppCompatActivity {
         pedidoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                qtdItemCarrinho = 0;
+                totalCarrinho = 0.0;
                 if (dataSnapshot.getValue() != null){
                     pedidoRecuperado = dataSnapshot.getValue(Pedido.class);
                     itensPedido = pedidoRecuperado.getItens();
 
-                    qtdItemCarrinho = 0;
-                    totalCarrinho = 0.0;
                     itensPedido = new ArrayList<>();
 
                     for (ItensPedido item : itensPedido){
@@ -248,13 +248,12 @@ public class CardapioActivity extends AppCompatActivity {
 
                         totalCarrinho += (qtde * preco);
                         qtdItemCarrinho += qtde;
+
                     }
                 }
-
                 txtQuantidade.setText("qtd " + String.valueOf(qtdItemCarrinho));
                 txtValor.setText("R$ " + totalCarrinho);
                 dialog.dismiss();
-
             }
 
             @Override
@@ -307,7 +306,7 @@ public class CardapioActivity extends AppCompatActivity {
     }
 
     private void confirmarPedido(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Método de pagamento");
 
         CharSequence[] items = new CharSequence[]{
@@ -335,6 +334,7 @@ public class CardapioActivity extends AppCompatActivity {
                 //remove pedido temporario
                 pedidoRecuperado.remover();
                 pedidoRecuperado = null;
+                Toast.makeText(getApplicationContext(), "Pedido Realizado", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -354,7 +354,7 @@ public class CardapioActivity extends AppCompatActivity {
         this.recyclerProcutoCardapio = findViewById(R.id.recyclerProdutoCardapio);
         this.imageEmpresaCardapio    = findViewById(R.id.imageEmpresaCardapio);
         this.nomeEmpresaCardapio     = findViewById(R.id.textNomeEmpresaCardapio);
-        this.txtQuantidade           = findViewById(R.id.txtCarrinhoQuantidade);
-        this.txtValor                = findViewById(R.id.txtCarrinhoValor);
+        txtQuantidade           = findViewById(R.id.txtCarrinhoQuantidade);
+        txtValor                = findViewById(R.id.txtCarrinhoValor);
     }
 }
