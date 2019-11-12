@@ -3,6 +3,7 @@ package com.ktm.uaifome.model;
 import com.google.firebase.database.DatabaseReference;
 import com.ktm.uaifome.helper.ConfiguracaoFirebase;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Pedido {
@@ -145,5 +146,18 @@ public class Pedido {
                 .child(getIdEmpresa())
                 .child(getIdPedido());
         pedidoRef.removeValue();
+    }
+
+    public void atualizarStatus(){
+
+        HashMap<String, Object> status = new HashMap<>();
+        status.put("stats", getStats());
+
+        DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
+        DatabaseReference pedidosRef = firebaseRef
+                .child("pedidos")
+                .child(getIdEmpresa())
+                .child(getIdPedido());
+        pedidosRef.updateChildren(status);
     }
 }

@@ -167,7 +167,7 @@ public class CardapioActivity extends AppCompatActivity {
                     pedidoRecuperado.salvar();
                 }catch (Exception e){
                     startActivity(new Intent(getApplicationContext(), ConfiguracoesUsuarioActivity.class));
-                    Toast.makeText(getApplicationContext(), "Insira as informações do usuário nas configurações", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Insira suas informações", Toast.LENGTH_LONG).show();
                 }
 
             }

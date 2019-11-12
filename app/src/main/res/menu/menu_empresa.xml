@@ -12,7 +12,7 @@
         android:id="@+id/pedidosEmpresa"
         app:showAsAction="always"
         android:icon="@drawable/ic_assignment_black_24dp"
-        android:title="Novo Produto" />
+        android:title="Lista de pedidos" />
 
     <item
         android:id="@+id/menuConfigurações"
