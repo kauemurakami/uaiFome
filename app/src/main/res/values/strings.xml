@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">UaiFome</string>
+    <string name="pedido_realizado">Pedido Realizado</string>
+    <string name="erro_pedido">Você deve selecionar ao menos 1 item</string>
+    <string name="obs_pedido">"Obs : ex sem batata, troco pra R$50 "</string>
+    <string name="corfirmar">Confirmar</string>
+    <string name="metodo_pag">Método de pagamento</string>
+    <string name="card">Cartão</string>
+    <string name="money">Dinheiro</string>
+    <string name="carregando">Carregando</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="insira_informacoes">Insira suas informações</string>
+    <string name="insira_quantidade">Insira a quantidade</string>
+    <string name="quantidade">Quantidade</string>
+    <string name="cardapio">Cardápio</string>
+    <string name="pedidos">Pedidos</string>
 </resources>

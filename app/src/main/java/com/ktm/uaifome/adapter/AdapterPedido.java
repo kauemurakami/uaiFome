@@ -18,7 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AdapterPedido extends RecyclerView.Adapter<AdapterPedido.MyViewHolder> {
 
-    private List<Pedido> pedidos ;
+    private List<Pedido> pedidos;
+
     public AdapterPedido(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
@@ -84,6 +85,7 @@ public class AdapterPedido extends RecyclerView.Adapter<AdapterPedido.MyViewHold
             pgto        = itemView.findViewById(R.id.textPedidoPgto);
             observacao  = itemView.findViewById(R.id.textPedidoObs);
             itens       = itemView.findViewById(R.id.textPedidoItens);
+
         }
     }
 

@@ -1,11 +1,5 @@
 package com.ktm.uaifome.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +14,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +37,6 @@ import com.ktm.uaifome.model.Produto;
 import com.ktm.uaifome.model.Usuario;
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,7 +85,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         //config toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Cardápio");
+        toolbar.setTitle(R.string.cardapio);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -128,8 +127,8 @@ public class CardapioActivity extends AppCompatActivity {
 
     private void confirmarQuantidade(final int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Quantidade");
-        builder.setMessage("Digite a quantidade");
+        builder.setTitle(R.string.quantidade);
+        builder.setMessage(R.string.insira_quantidade);
 
         final EditText edtQtd = new EditText(this);
         edtQtd.setText("1");
@@ -137,7 +136,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         builder.setView(edtQtd);
 
-        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.corfirmar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -167,13 +166,13 @@ public class CardapioActivity extends AppCompatActivity {
                     pedidoRecuperado.salvar();
                 }catch (Exception e){
                     startActivity(new Intent(getApplicationContext(), ConfiguracoesUsuarioActivity.class));
-                    Toast.makeText(getApplicationContext(), "Insira suas informações", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.insira_informacoes, Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -200,7 +199,7 @@ public class CardapioActivity extends AppCompatActivity {
     private void recuperarDadosUsuario(){
         dialog = new SpotsDialog.Builder()
                 .setContext(this)
-                .setMessage("Carregando dados")
+                .setMessage(R.string.carregando)
                 .setCancelable(false)
                 .build();
         dialog.show();
@@ -251,8 +250,7 @@ public class CardapioActivity extends AppCompatActivity {
 
                     }
                 }
-                txtQuantidade.setText("qtd " + String.valueOf(qtdItemCarrinho));
-                txtValor.setText("R$ " + totalCarrinho);
+
                 dialog.dismiss();
             }
 
@@ -299,15 +297,19 @@ public class CardapioActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menuConfirmarPedido :
-                confirmarPedido();
+                if (itensPedido != null){
+                    confirmarPedido();
+
+                } else Toast.makeText(getApplicationContext(), R.string.erro_pedido, Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void confirmarPedido(){
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Método de pagamento");
+        builder.setTitle(R.string.metodo_pag);
 
         CharSequence[] items = new CharSequence[]{
                 "Dinheiro","Cartão"
@@ -320,21 +322,25 @@ public class CardapioActivity extends AppCompatActivity {
         });
 
         final EditText edtObservacao = new EditText(getApplicationContext());
-        edtObservacao.setHint("Obs : ex sem batata, troco pra R$50 ");
+        edtObservacao.setHint(R.string.obs_pedido);
         builder.setView(edtObservacao);
 
-        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.corfirmar , new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String obs = edtObservacao.getText().toString();
-                pedidoRecuperado.setMetodoPagamento(metodoPagamento);
-                pedidoRecuperado.setObservacao(obs);
-                pedidoRecuperado.setStats("confirmado");
-                pedidoRecuperado.confirmar();
+
+                    String obs = edtObservacao.getText().toString();
+                    pedidoRecuperado.setMetodoPagamento(metodoPagamento);
+                    pedidoRecuperado.setObservacao(obs);
+                    pedidoRecuperado.setStats("confirmado");
+                    pedidoRecuperado.confirmar();
+
+                    Toast.makeText(getApplicationContext(), R.string.pedido_realizado, Toast.LENGTH_LONG).show();
+
+
                 //remove pedido temporario
                 pedidoRecuperado.remover();
                 pedidoRecuperado = null;
-                Toast.makeText(getApplicationContext(), "Pedido Realizado", Toast.LENGTH_LONG).show();
             }
         });
 

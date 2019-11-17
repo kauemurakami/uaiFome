@@ -1,11 +1,5 @@
 package com.ktm.uaifome.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //config toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("uaiFome ");
+        toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
         //configurando recylerView
@@ -62,6 +64,15 @@ public class HomeActivity extends AppCompatActivity {
 
         //recuperando empresas para clientes
         recuperaEmpresas();
+
+        //admob
+        //MobileAds.initialize(this){}
+        AdView adview = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest
+                .Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        adview.loadAd(adRequest);
 
         //configurando searchView
         searchView.setHint("Pesquisar ...");

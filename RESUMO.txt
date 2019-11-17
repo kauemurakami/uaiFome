@@ -1,0 +1,54 @@
+* 00e459a1560616e3e25e9d793e69cd856ce42cf1 Resolvendo problema no carregamento das configurações e pedidos
+* 7e8d3ac3083a7b0a8f0d9aa59e32971847a616f3 Configurando pedidos para tela de pedidos
+* 61c1273a6b1f1cbd6b35766b24993aa07a55486a Criando activity, view e adapter para apresentação dos pedidos para empresa
+* 62f18eabeabef71f6042d8d04e5e66c82e03b828 Resolvendo problema de dados do usuário, quando nãor fornecerá de imediato será redirecionado no momento do pedido
+* 5df88bb48cbc1bf43bfa1245b531cfec1c06d5d8 alterando imagem de logo
+* 34b7fab70822531eefab53056033c06954b279d7 corrigindo erro ao abrir cardápio da empresa
+* 3116aa2e81794ce258fa81f5ae2f7182f2042e28 renovando pedidoRecuperado para o próximo pedido
+* eaae7df1a0af9fa118bcb1806b56bf615bae43f9 confirmando pedido, criando estrutura do pedido
+* 676bc4065f7f3406425c15cd56f9783680a1066a Configurando carrinho, quantidade, valor total dos pedidos
+*   03755ee9c230ac33c4711541cf6c732b77c86232 Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+|\  
+| * 97bd178770ff7d77d205043dcef999afd9264eff Update RecyclerItemClickListener.java
+* | 77dc00c81392b13b7ec72ea7305b0d0cd42c4d91 configurando carrinho, adicionando lista de itens do pedido
+|/  
+* 9810108411a8209b9a46567ddd91a26afbfa9294 refazendo configurações do usuario
+*   b13781e544d1bb6274a3b0331f929225a6435ced Merge branch 'master' of https://github.com/kauemurakami/uaiFome into hotfix
+|\  
+| * 60ddffca1451fe76f115d43d77d0e209c7f911ce refazendo upload
+| * b0829dda1686781bd7690c7e0b4c138bd105a0b7 correção de dependências de classes instânciadas erroneamentes de outras bibliotecas pelo autocomplete
+| * c324529336bb5ae4e75786efe569745e06b8d762 Criando configurações do usuario para seus respectivos dados
+| * 951210cec2d84e1917e83899fb152c4f8baf85d0 melhorando interface de login, ajustando texto do botão e realçando foco nas opções selecionadas
+| * 124fe9c47929fa2e51f1d0fbfdfc5ca978a8a0fe listando cardápio das empresas apra o usuário da empresa selecionada/pesquisada por ele
+| * 4bbc75e5ae275b8a878f39685124b3d445628506 Corrigindo erro de empresas sem imagens, Listando empresas para os clientes, configurando exclusão com click longo, usando métodos de pesquisa char a char com searchView
+| * 8f3379836d82ae77689328dd8197b8f3f56ef0af Listando e excluino produtos para a empresa
+* | 0a689281b418e692a869458d841370a2d948cf01 restaurando versão estavel
+|/  
+* 4382241f419e9c5cd67d0b8ef17ffadb99d7675b Salvando Produtos da empresa
+*   22f561e942c7ecdb73f300dfa34eebc2a4a3270a Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+|\  
+| * d0689ff0149c6f205b8e9661b267a543596a7734 Update README.md
+* | b5e7bb9e743f8b44551f9c1463a1a64964a36aca Carregando dados da empresa ao abrir as configurações.
+|/  
+*   73f06f5f3264f1d9e7704361e1d7ddbdfbbf73ff Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+|\  
+| * 967618709623f727c19dddbf2ed3ac5964d55056 Update README.md
+* | 7c5d155ba6340ec15cf5edca3501e39b0d7f685d Salvando dados da empresa
+|/  
+* 8071cfb16a500b944182f29678a71c51310677d9 Finalizando interfaces, empresa, usuario e suas respectivas configurações
+*   25a695bbf73ad7e384076f990e77ca1ab60e8f0c Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+|\  
+| * c22eeca255176e9bdb050f7c9aea6c6e7ae7171d Update README.md
+* | 10724263c3bff5e6b6f8e5f4024d146329bb6493 Criando toolbar e menu de da empresa, configurando activitys de configurações, novo produto, e método de deslogar
+|/  
+* 1488325a9e49797ae139dac1648885b70398ad98 Criando tela de cadastro de empresa e usuarios, destinando o login de ambos para seus respectivos dashboards
+*   449912f7f88e94c089f5388532dae58be4f08943 Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+|\  
+| * 998c4dd26992c0dc679b6409352978aa18aeeffa Update README.md
+| * 69ea0be4f1bc2a445544a639a2d0c993138c5b84 Update README.md
+| * 0228922c03ba07d9cafaa75e2b930fdcdd521128 getting started
+* | 60b7632707f1f91d7ce4c14713f8196d071f3297 Criando funções Cadastro e Login, verificação de usuário, via firebaseauth
+* | 3a2c5772ececb7e727f884ed098a863028f4efcb Criando funções Cadastro e Login, verificação de usuário, via firebaseauth
+|/  
+* 0d4a2db4eafe947edcc443b82d3a4c45d0e4b170 commit inicial, configurando tela de splash, login, dependencias do firebase
+* 2dd7d73b3598ec144e20dff4ac499b9effa3ac89 Initial commit

@@ -1,0 +1,534 @@
+commit 00e459a1560616e3e25e9d793e69cd856ce42cf1
+Author: kauemurakami <kauetmurakami@gmail.com>
+Date:   Tue Nov 12 00:29:56 2019 -0300
+
+    Resolvendo problema no carregamento das configurações e pedidos
+
+ .../com/ktm/uaifome/activity/CardapioActivity.java |  2 +-
+ .../com/ktm/uaifome/activity/PedidosActivity.java  | 46 +++++++++++++++++++---
+ .../com/ktm/uaifome/adapter/AdapterPedido.java     |  3 +-
+ .../main/java/com/ktm/uaifome/model/Pedido.java    | 14 +++++++
+ app/src/main/res/menu/menu_empresa.xml             |  2 +-
+ 5 files changed, 57 insertions(+), 10 deletions(-)
+
+commit 7e8d3ac3083a7b0a8f0d9aa59e32971847a616f3
+Author: kauemurakami <kauetmurakami@gmail.com>
+Date:   Wed Nov 6 22:51:01 2019 -0300
+
+    Configurando pedidos para tela de pedidos
+
+ .../com/ktm/uaifome/activity/EmpresaActivity.java  |  8 +++
+ .../com/ktm/uaifome/activity/PedidosActivity.java  | 73 ++++++++++++++++++++--
+ .../main/res/drawable/ic_assignment_black_24dp.xml |  9 +++
+ .../drawable/ic_playlist_add_check_black_24dp.xml  |  9 +++
+ app/src/main/res/menu/menu_empresa.xml             |  6 ++
+ 5 files changed, 99 insertions(+), 6 deletions(-)
+
+commit 61c1273a6b1f1cbd6b35766b24993aa07a55486a
+Author: kauemurakami <kauetmurakami@gmail.com>
+Date:   Wed Nov 6 22:24:20 2019 -0300
+
+    Criando activity, view e adapter para apresentação dos pedidos para empresa
+
+ .idea/codeStyles/Project.xml                       | 116 +++++++++++++++++++++
+ app/src/main/AndroidManifest.xml                   |   3 +-
+ .../com/ktm/uaifome/activity/CardapioActivity.java |  22 ++--
+ .../com/ktm/uaifome/activity/PedidosActivity.java  |  21 +++-
+ .../com/ktm/uaifome/adapter/AdapterPedido.java     |  91 ++++++++++++++++
+ app/src/main/res/layout/activity_pedidos.xml       |  24 ++++-
+ app/src/main/res/layout/adapter_pedidos.xml        |  50 +++++++++
+ 7 files changed, 312 insertions(+), 15 deletions(-)
+
+commit 62f18eabeabef71f6042d8d04e5e66c82e03b828
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Tue Nov 5 21:40:11 2019 -0300
+
+    Resolvendo problema de dados do usuário, quando nãor fornecerá de imediato será redirecionado no momento do pedido
+
+ app/build.gradle                                   |   2 +-
+ .../com/ktm/uaifome/activity/CardapioActivity.java |  19 ++++++----
+ .../activity/ConfiguracoesUsuarioActivity.java     |  42 ++++++++++++---------
+ app/src/main/res/drawable/logo.png                 | Bin 7277 -> 0 bytes
+ 4 files changed, 37 insertions(+), 26 deletions(-)
+
+commit 5df88bb48cbc1bf43bfa1245b531cfec1c06d5d8
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Tue Nov 5 12:33:35 2019 -0300
+
+    alterando imagem de logo
+
+ app/src/main/res/drawable/logo.png | Bin 0 -> 7277 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 34b7fab70822531eefab53056033c06954b279d7
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Tue Nov 5 11:55:24 2019 -0300
+
+    corrigindo erro ao abrir cardápio da empresa
+
+ app/src/main/AndroidManifest.xml                   |  4 ++-
+ .../com/ktm/uaifome/activity/CardapioActivity.java | 39 +++++++++++-----------
+ .../com/ktm/uaifome/activity/PedidosActivity.java  | 16 +++++++++
+ .../main/java/com/ktm/uaifome/model/Pedido.java    | 33 ++++++++++++------
+ app/src/main/res/layout/activity_pedidos.xml       |  9 +++++
+ 5 files changed, 69 insertions(+), 32 deletions(-)
+
+commit 3116aa2e81794ce258fa81f5ae2f7182f2042e28
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Sun Nov 3 14:13:10 2019 -0300
+
+    renovando pedidoRecuperado para o próximo pedido
+
+ .../main/java/com/ktm/uaifome/activity/CardapioActivity.java   |  3 +++
+ app/src/main/java/com/ktm/uaifome/model/Pedido.java            | 10 ++++++++++
+ 2 files changed, 13 insertions(+)
+
+commit eaae7df1a0af9fa118bcb1806b56bf615bae43f9
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Sun Nov 3 14:09:13 2019 -0300
+
+    confirmando pedido, criando estrutura do pedido
+
+ .../com/ktm/uaifome/activity/CardapioActivity.java | 44 +++++++++++++++++++++-
+ .../main/java/com/ktm/uaifome/model/Pedido.java    | 10 +++++
+ 2 files changed, 52 insertions(+), 2 deletions(-)
+
+commit 676bc4065f7f3406425c15cd56f9783680a1066a
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Nov 1 18:20:17 2019 -0300
+
+    Configurando carrinho, quantidade, valor total dos pedidos
+
+ .../com/ktm/uaifome/activity/CardapioActivity.java |  76 +++++++++++++-
+ .../java/com/ktm/uaifome/model/ItensPedido.java    |   2 +-
+ .../main/java/com/ktm/uaifome/model/Pedido.java    | 111 +++++++++++++++++++++
+ 3 files changed, 185 insertions(+), 4 deletions(-)
+
+commit 03755ee9c230ac33c4711541cf6c732b77c86232
+Merge: 77dc00c 97bd178
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Thu Oct 17 19:40:29 2019 -0300
+
+    Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+
+commit 77dc00c81392b13b7ec72ea7305b0d0cd42c4d91
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Thu Oct 17 19:40:13 2019 -0300
+
+    configurando carrinho, adicionando lista de itens do pedido
+
+ app/build.gradle                                   |   4 +
+ .../com/ktm/uaifome/activity/CardapioActivity.java | 142 ++++++++++++++++++++-
+ .../java/com/ktm/uaifome/model/ItensPedido.java    |  42 ++++++
+ .../main/java/com/ktm/uaifome/model/Pedido.java    |   7 +
+ app/src/main/res/layout/activity_cardapio.xml      |  36 ++++++
+ app/src/main/res/menu/cardapio.xml                 |  10 ++
+ app/src/main/res/values/colors.xml                 |   2 +-
+ 7 files changed, 239 insertions(+), 4 deletions(-)
+
+commit 97bd178770ff7d77d205043dcef999afd9264eff
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Mon Sep 23 19:58:06 2019 -0300
+
+    Update RecyclerItemClickListener.java
+
+ .../main/java/com/ktm/uaifome/listener/RecyclerItemClickListener.java  | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 9810108411a8209b9a46567ddd91a26afbfa9294
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 18 15:08:18 2019 -0300
+
+    refazendo configurações do usuario
+
+ .../activity/ConfiguracoesUsuarioActivity.java     | 73 ++++++++++++++++++++++
+ .../main/java/com/ktm/uaifome/model/Usuario.java   | 45 +++++++++++++
+ .../res/layout/activity_configuracoes_usuario.xml  | 48 ++++++++++++--
+ 3 files changed, 162 insertions(+), 4 deletions(-)
+
+commit b13781e544d1bb6274a3b0331f929225a6435ced
+Merge: 0a68928 60ddffc
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Tue Sep 17 16:18:43 2019 -0300
+
+    Merge branch 'master' of https://github.com/kauemurakami/uaiFome into hotfix
+
+commit 0a689281b418e692a869458d841370a2d948cf01
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Tue Sep 17 16:18:18 2019 -0300
+
+    restaurando versão estavel
+
+ app/src/main/AndroidManifest.xml                   |   6 +-
+ .../uaifome/activity/AuthenticationActivity.java   |  36 +++++-
+ .../com/ktm/uaifome/activity/CardapioActivity.java | 107 ++++++++++++++++++
+ .../activity/ConfiguracoesEmpresaActivity.java     |  10 +-
+ .../com/ktm/uaifome/activity/EmpresaActivity.java  |  84 ++++++++++++++
+ .../com/ktm/uaifome/activity/HomeActivity.java     | 122 ++++++++++++++++++++-
+ .../com/ktm/uaifome/adapter/AdapterEmpresa.java    |  71 ++++++++++++
+ .../com/ktm/uaifome/adapter/AdapterProduto.java    |  61 +++++++++++
+ .../listener/RecyclerItemClickListener.java        |  64 +++++++++++
+ .../main/java/com/ktm/uaifome/model/Empresa.java   |  16 ++-
+ .../main/java/com/ktm/uaifome/model/Produto.java   |  27 ++++-
+ .../main/res/layout/activity_authentication.xml    |   6 +-
+ app/src/main/res/layout/activity_cardapio.xml      |  52 +++++++++
+ .../res/layout/activity_configuracoes_empresa.xml  |   2 +-
+ app/src/main/res/layout/adapter_empresa.xml        |  71 ++++++++++++
+ app/src/main/res/layout/adapter_produto.xml        |  37 +++++++
+ app/src/main/res/layout/divisor.xml                |   8 ++
+ 17 files changed, 764 insertions(+), 16 deletions(-)
+
+commit 60ddffca1451fe76f115d43d77d0e209c7f911ce
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Tue Sep 17 16:10:51 2019 -0300
+
+    refazendo upload
+
+ .../uaifome/activity/AuthenticationActivity.java   |  2 +-
+ .../activity/ConfiguracoesUsuarioActivity.java     | 70 ----------------------
+ .../main/java/com/ktm/uaifome/model/Usuario.java   | 46 --------------
+ .../res/layout/activity_configuracoes_usuario.xml  | 40 -------------
+ 4 files changed, 1 insertion(+), 157 deletions(-)
+
+commit b0829dda1686781bd7690c7e0b4c138bd105a0b7
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Tue Sep 17 16:03:49 2019 -0300
+
+    correção de dependências de classes instânciadas erroneamentes de outras bibliotecas pelo autocomplete
+
+ app/src/main/java/com/ktm/uaifome/activity/HomeActivity.java  | 1 -
+ app/src/main/java/com/ktm/uaifome/adapter/AdapterEmpresa.java | 5 -----
+ 2 files changed, 6 deletions(-)
+
+commit c324529336bb5ae4e75786efe569745e06b8d762
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Mon Sep 16 15:22:45 2019 -0300
+
+    Criando configurações do usuario para seus respectivos dados
+
+ .../uaifome/activity/AuthenticationActivity.java   |  2 +-
+ .../activity/ConfiguracoesUsuarioActivity.java     | 70 ++++++++++++++++++++++
+ .../main/java/com/ktm/uaifome/model/Usuario.java   | 46 ++++++++++++++
+ .../res/layout/activity_configuracoes_usuario.xml  | 40 +++++++++++++
+ 4 files changed, 157 insertions(+), 1 deletion(-)
+
+commit 951210cec2d84e1917e83899fb152c4f8baf85d0
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Mon Sep 16 14:47:14 2019 -0300
+
+    melhorando interface de login, ajustando texto do botão e realçando foco nas opções selecionadas
+
+ .../uaifome/activity/AuthenticationActivity.java   | 36 ++++++++++++++++++++--
+ .../main/res/layout/activity_authentication.xml    |  6 ++--
+ 2 files changed, 37 insertions(+), 5 deletions(-)
+
+commit 124fe9c47929fa2e51f1d0fbfdfc5ca978a8a0fe
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Mon Sep 16 14:23:14 2019 -0300
+
+    listando cardápio das empresas apra o usuário da empresa selecionada/pesquisada por ele
+
+ app/src/main/AndroidManifest.xml                   |   6 +-
+ .../com/ktm/uaifome/activity/CardapioActivity.java | 107 +++++++++++++++++++++
+ .../com/ktm/uaifome/activity/EmpresaActivity.java  |   2 +-
+ .../com/ktm/uaifome/activity/HomeActivity.java     |  28 ++++++
+ .../main/java/com/ktm/uaifome/model/Empresa.java   |   4 +-
+ app/src/main/res/layout/activity_cardapio.xml      |  52 ++++++++++
+ 6 files changed, 196 insertions(+), 3 deletions(-)
+
+commit 4bbc75e5ae275b8a878f39685124b3d445628506
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Mon Sep 16 13:35:56 2019 -0300
+
+    Corrigindo erro de empresas sem imagens, Listando empresas para os clientes, configurando exclusão com click longo, usando métodos de pesquisa char a char com searchView
+
+ .../activity/ConfiguracoesEmpresaActivity.java     | 10 ++-
+ .../com/ktm/uaifome/activity/HomeActivity.java     | 95 +++++++++++++++++++++-
+ .../com/ktm/uaifome/adapter/AdapterEmpresa.java    | 76 +++++++++++++++++
+ .../main/java/com/ktm/uaifome/model/Empresa.java   | 12 ++-
+ .../main/java/com/ktm/uaifome/model/Produto.java   |  4 +-
+ .../res/layout/activity_configuracoes_empresa.xml  |  2 +-
+ app/src/main/res/layout/adapter_empresa.xml        | 71 ++++++++++++++++
+ 7 files changed, 261 insertions(+), 9 deletions(-)
+
+commit 8f3379836d82ae77689328dd8197b8f3f56ef0af
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 16:40:06 2019 -0300
+
+    Listando e excluino produtos para a empresa
+
+ .../com/ktm/uaifome/activity/EmpresaActivity.java  | 84 ++++++++++++++++++++++
+ .../com/ktm/uaifome/adapter/AdapterProduto.java    | 61 ++++++++++++++++
+ .../listener/RecyclerItemClickListener.java        | 64 +++++++++++++++++
+ .../main/java/com/ktm/uaifome/model/Produto.java   | 27 ++++++-
+ app/src/main/res/layout/adapter_produto.xml        | 37 ++++++++++
+ app/src/main/res/layout/divisor.xml                |  8 +++
+ 6 files changed, 279 insertions(+), 2 deletions(-)
+
+commit 4382241f419e9c5cd67d0b8ef17ffadb99d7675b
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 16:09:07 2019 -0300
+
+    Salvando Produtos da empresa
+
+ .../activity/NovoProdutoEmpresaActivity.java       | 58 ++++++++++++++++++++++
+ .../main/java/com/ktm/uaifome/model/Produto.java   | 56 +++++++++++++++++++++
+ .../res/layout/activity_novo_produto_empresa.xml   | 50 +++++++++++++++++++
+ 3 files changed, 164 insertions(+)
+
+commit 22f561e942c7ecdb73f300dfa34eebc2a4a3270a
+Merge: b5e7bb9 d0689ff
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 15:49:06 2019 -0300
+
+    Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+
+commit b5e7bb9e743f8b44551f9c1463a1a64964a36aca
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 15:48:53 2019 -0300
+
+    Carregando dados da empresa ao abrir as configurações.
+
+ app/build.gradle                                   |  3 ++
+ .../activity/ConfiguracoesEmpresaActivity.java     | 40 ++++++++++++++++++++++
+ 2 files changed, 43 insertions(+)
+
+commit d0689ff0149c6f205b8e9661b267a543596a7734
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 15:39:39 2019 -0300
+
+    Update README.md
+    
+    Incluindo novas dependências
+
+ README.md | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
+
+commit 73f06f5f3264f1d9e7704361e1d7ddbdfbbf73ff
+Merge: 7c5d155 9676187
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 15:30:07 2019 -0300
+
+    Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+
+commit 7c5d155ba6340ec15cf5edca3501e39b0d7f685d
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 15:29:55 2019 -0300
+
+    Salvando dados da empresa
+
+ .idea/inspectionProfiles/Project_Default.xml       |   6 +
+ app/build.gradle                                   |   3 +
+ .../activity/ConfiguracoesEmpresaActivity.java     | 151 +++++++++++++++++++++
+ .../main/java/com/ktm/uaifome/model/Empresa.java   |  69 ++++++++++
+ .../res/layout/activity_configuracoes_empresa.xml  |  65 +++++++++
+ 5 files changed, 294 insertions(+)
+
+commit 967618709623f727c19dddbf2ed3ac5964d55056
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 14:32:13 2019 -0300
+
+    Update README.md
+    
+    adicionando novas dependências e suas respectivas fontes
+
+ README.md | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 8071cfb16a500b944182f29678a71c51310677d9
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Fri Sep 13 14:22:08 2019 -0300
+
+    Finalizando interfaces, empresa, usuario e suas respectivas configurações
+
+ app/src/main/AndroidManifest.xml                   |  9 ++-
+ .../activity/ConfiguracoesEmpresaActivity.java     |  7 +++
+ .../activity/ConfiguracoesUsuarioActivity.java     | 24 ++++++++
+ .../com/ktm/uaifome/activity/EmpresaActivity.java  |  1 +
+ .../com/ktm/uaifome/activity/HomeActivity.java     | 72 ++++++++++++++++++++++
+ .../activity/NovoProdutoEmpresaActivity.java       |  8 +++
+ app/src/main/res/drawable/ic_search_black_24dp.xml |  9 +++
+ .../res/layout/activity_configuracoes_empresa.xml  | 12 +++-
+ .../res/layout/activity_configuracoes_usuario.xml  | 13 ++++
+ app/src/main/res/layout/activity_home.xml          | 20 ++++++
+ .../res/layout/activity_novo_produto_empresa.xml   | 10 ++-
+ app/src/main/res/menu/menu_usuario.xml             | 24 ++++++++
+ 12 files changed, 202 insertions(+), 7 deletions(-)
+
+commit 25a695bbf73ad7e384076f990e77ca1ab60e8f0c
+Merge: 1072426 c22eeca
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Thu Sep 12 18:40:01 2019 -0300
+
+    Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+
+commit 10724263c3bff5e6b6f8e5f4024d146329bb6493
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Thu Sep 12 18:39:16 2019 -0300
+
+    Criando toolbar e menu de da empresa, configurando activitys de configurações, novo produto, e método de deslogar
+
+ app/build.gradle                                   |  4 ++
+ app/src/main/AndroidManifest.xml                   |  4 +-
+ .../uaifome/activity/AuthenticationActivity.java   |  1 -
+ .../activity/ConfiguracoesEmpresaActivity.java     | 16 ++++++
+ .../com/ktm/uaifome/activity/EmpresaActivity.java  | 63 +++++++++++++++++++++-
+ .../activity/NovoProdutoEmpresaActivity.java       | 16 ++++++
+ .../com/ktm/uaifome/activity/SplashActivity.java   |  1 -
+ app/src/main/res/drawable/ic_add_24dp.xml          |  9 ++++
+ .../res/layout/activity_configuracoes_empresa.xml  |  9 ++++
+ app/src/main/res/layout/activity_empresa.xml       | 20 +++++++
+ .../res/layout/activity_novo_produto_empresa.xml   |  9 ++++
+ app/src/main/res/layout/toolbar.xml                | 18 +++++++
+ app/src/main/res/menu/menu_empresa.xml             | 24 +++++++++
+ app/src/main/res/values/styles.xml                 |  2 +-
+ 14 files changed, 191 insertions(+), 5 deletions(-)
+
+commit c22eeca255176e9bdb050f7c9aea6c6e7ae7171d
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Thu Sep 12 18:03:14 2019 -0300
+
+    Update README.md
+    
+    adicionando biblioteca externa para estilização da toolbar.
+
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 1488325a9e49797ae139dac1648885b70398ad98
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Thu Sep 12 17:56:38 2019 -0300
+
+    Criando tela de cadastro de empresa e usuarios, destinando o login de ambos para seus respectivos dashboards
+
+ app/src/main/AndroidManifest.xml                   |  3 +-
+ .../uaifome/activity/AuthenticationActivity.java   | 53 +++++++++++++++++-----
+ .../com/ktm/uaifome/activity/EmpresaActivity.java  | 16 +++++++
+ .../ktm/uaifome/helper/ConfiguracaoFirebase.java   |  7 ---
+ .../com/ktm/uaifome/helper/UsuarioFirebase.java    | 36 +++++++++++++++
+ .../main/res/layout/activity_authentication.xml    | 38 +++++++++++++++-
+ app/src/main/res/layout/activity_empresa.xml       |  9 ++++
+ 7 files changed, 140 insertions(+), 22 deletions(-)
+
+commit 449912f7f88e94c089f5388532dae58be4f08943
+Merge: 60b7632 998c4dd
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 16:03:38 2019 -0300
+
+    Merge branch 'master' of https://github.com/kauemurakami/uaiFome
+
+commit 60b7632707f1f91d7ce4c14713f8196d071f3297
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 16:01:16 2019 -0300
+
+    Criando funções Cadastro e Login, verificação de usuário, via firebaseauth
+
+ .idea/vcs.xml                                      |  6 ++
+ app/build.gradle                                   |  2 +-
+ app/src/main/AndroidManifest.xml                   |  3 +-
+ .../uaifome/activity/AuthenticationActivity.java   | 88 ++++++++++++++++++++++
+ .../com/ktm/uaifome/activity/HomeActivity.java     |  4 +-
+ .../ktm/uaifome/helper/ConfiguracaoFirebase.java   | 42 +++++++++++
+ 6 files changed, 142 insertions(+), 3 deletions(-)
+
+commit 3a2c5772ececb7e727f884ed098a863028f4efcb
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 16:00:38 2019 -0300
+
+    Criando funções Cadastro e Login, verificação de usuário, via firebaseauth
+
+ .../main/java/com/ktm/uaifome/activity/HomeActivity.java   | 14 ++++++++++++++
+ .../java/com/ktm/uaifome/helper/ConfiguracaoFirebase.java  |  4 ++++
+ app/src/main/res/layout/activity_home.xml                  |  9 +++++++++
+ 3 files changed, 27 insertions(+)
+
+commit 998c4dd26992c0dc679b6409352978aa18aeeffa
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 15:25:07 2019 -0300
+
+    Update README.md
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 69ea0be4f1bc2a445544a639a2d0c993138c5b84
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 15:24:46 2019 -0300
+
+    Update README.md
+
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 0228922c03ba07d9cafaa75e2b930fdcdd521128
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 15:24:20 2019 -0300
+
+    getting started
+    
+    Dependências utilizadas.
+    Versão 15.0.0 do firebase.
+
+ README.md | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+commit 0d4a2db4eafe947edcc443b82d3a4c45d0e4b170
+Author: kaue murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 15:19:48 2019 -0300
+
+    commit inicial, configurando tela de splash, login, dependencias do firebase
+
+ .gitignore                                         |  13 ++
+ .idea/encodings.xml                                |   4 +
+ .idea/gradle.xml                                   |  15 ++
+ .idea/misc.xml                                     |   9 ++
+ .idea/runConfigurations.xml                        |  12 ++
+ app/.gitignore                                     |   1 +
+ app/build.gradle                                   |  38 +++++
+ app/google-services.json                           |  48 ++++++
+ app/proguard-rules.pro                             |  21 +++
+ .../com/ktm/uaifome/ExampleInstrumentedTest.java   |  27 ++++
+ app/src/main/AndroidManifest.xml                   |  22 +++
+ .../uaifome/activity/AuthenticationActivity.java   |  37 +++++
+ .../com/ktm/uaifome/activity/SplashActivity.java   |  32 ++++
+ .../res/drawable-v24/ic_launcher_foreground.xml    |  34 ++++
+ app/src/main/res/drawable/bg_edit_text.xml         |   9 ++
+ .../main/res/drawable/ic_launcher_background.xml   | 170 ++++++++++++++++++++
+ app/src/main/res/drawable/logo.jpg                 | Bin 0 -> 29063 bytes
+ app/src/main/res/drawable/perfil.png               | Bin 0 -> 910 bytes
+ .../main/res/layout/activity_authentication.xml    |  78 ++++++++++
+ app/src/main/res/layout/activity_main.xml          |  18 +++
+ app/src/main/res/layout/activity_splash.xml        |  23 +++
+ app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml |   5 +
+ .../res/mipmap-anydpi-v26/ic_launcher_round.xml    |   5 +
+ app/src/main/res/mipmap-hdpi/ic_launcher.png       | Bin 0 -> 2963 bytes
+ app/src/main/res/mipmap-hdpi/ic_launcher_round.png | Bin 0 -> 4905 bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher.png       | Bin 0 -> 2060 bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher_round.png | Bin 0 -> 2783 bytes
+ app/src/main/res/mipmap-xhdpi/ic_launcher.png      | Bin 0 -> 4490 bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.png    | Bin 0 -> 6895 bytes
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.png     | Bin 0 -> 6387 bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.png   | Bin 0 -> 10413 bytes
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.png    | Bin 0 -> 9128 bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.png  | Bin 0 -> 15132 bytes
+ app/src/main/res/values/colors.xml                 |   8 +
+ app/src/main/res/values/strings.xml                |   3 +
+ app/src/main/res/values/styles.xml                 |  17 ++
+ .../test/java/com/ktm/uaifome/ExampleUnitTest.java |  17 ++
+ build.gradle                                       |  27 ++++
+ gradle.properties                                  |  20 +++
+ gradle/wrapper/gradle-wrapper.jar                  | Bin 0 -> 54329 bytes
+ gradle/wrapper/gradle-wrapper.properties           |   6 +
+ gradlew                                            | 172 +++++++++++++++++++++
+ gradlew.bat                                        |  84 ++++++++++
+ settings.gradle                                    |   1 +
+ 44 files changed, 976 insertions(+)
+
+commit 2dd7d73b3598ec144e20dff4ac499b9effa3ac89
+Author: Kauê Tomaz Murakami <kauetmurakami@gmail.com>
+Date:   Wed Sep 11 15:18:22 2019 -0300
+
+    Initial commit
+
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)

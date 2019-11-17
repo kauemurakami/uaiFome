@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ver Carrinho "
+
                 android:textColor="@color/colorPrimary" />
 
             <TextView
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="qtd : 0"
+
                 android:textColor="@color/colorPrimary" />
 
             <TextView
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="R$ : 0"
+
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>
 

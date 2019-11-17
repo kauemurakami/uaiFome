@@ -1,15 +1,14 @@
 package com.ktm.uaifome.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import dmax.dialog.SpotsDialog;
-
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +25,10 @@ import com.ktm.uaifome.model.Pedido;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PedidosActivity extends AppCompatActivity {
+import dmax.dialog.SpotsDialog;
+
+public class
+PedidosActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewPedidos;
     private AdapterPedido adapterPedido;
@@ -44,11 +46,11 @@ public class PedidosActivity extends AppCompatActivity {
         firebaseRef = ConfiguracaoFirebase.getFirebase();
         idEmpresa = UsuarioFirebase.getIdUsuario();
 
-        //configurando toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Pedidos");
+        toolbar.setTitle(R.string.pedidos);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //configurar recycler view
         recyclerViewPedidos.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -89,7 +91,7 @@ public class PedidosActivity extends AppCompatActivity {
 
         dialog = new SpotsDialog.Builder()
                 .setContext(this)
-                .setMessage("Carregando")
+                .setMessage(R.string.carregando)
                 .setCancelable(false)
                 .build();
 

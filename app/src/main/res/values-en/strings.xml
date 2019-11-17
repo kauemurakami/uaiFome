@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UaiFome</string>
+    <string name="pedido_realizado">"Order Completed "</string>
+    <string name="obs_pedido">Obs: ex without potato, change for $ 50</string>
+    <string name="corfirmar">OK</string>
+    <string name="erro_pedido">You must select at least one item</string>
+    <string name="metodo_pag">"Buy method "</string>
+    <string name="card">Credit Card</string>
+    <string name="money">Money</string>
+    <string name="carregando">Loading</string>
+    <string name="cancelar">Cancel</string>
+    <string name="insira_informacoes">Insert your informations</string>
+    <string name="insira_quantidade">Insert quantity</string>
+    <string name="quantidade">Quantity</string>
+    <string name="cardapio">Menu</string>
+    <string name="pedidos">Orders</string>
+</resources>
