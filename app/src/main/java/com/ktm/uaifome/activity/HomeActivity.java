@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
         AdView adview = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest
                 .Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+
                 .build();
         adview.loadAd(adRequest);
 
